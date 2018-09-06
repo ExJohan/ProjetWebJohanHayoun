@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Projet Web Johan Hayoun</title>
+</head>
+<body>
+	<main id="app">
+		<section v-if="currentPage === 'login'" id="login">
+			<br/><br/><br/><br/><br/>
+			<p>			
+			    <label for="identifianttxt">Identifiant</label> :
+				<input v-model="idtext" type="text">   
+				<label for="mdptxt">Mot de passe</label> :
+				<input v-model="mdptext" type="password">
+				<button id="boutonlog" v-on:click="theLogin ()">Se connecter</button>
+			</p>
+			<li v-on:click="currentPage = 'mainpage'">Retourner au site</li>
+			<p><br/><br/><br/>(Identifiant : admin | Mot de passe : admin)</p>
+
+		</section>
+		<section v-else id="mainpage">
+			<div class="svg-container">
+		    <!-- I crated SVG with: https://codepen.io/anthonydugois/pen/mewdyZ -->
+			<svg viewbox="0 220 800 400" class="svg">
+				<path id="curve" fill="#50c6d8" d="M 800 300 Q 400 350 0 300 L 0 0 L 800 0 L 800 300 Z">
+				</path>
+			</svg>
+			</div>
+			<header>
+			<h1>Bibliothèque de BD</h1>
+			</header>
+			<div id="contenu">
+		        <ul id="bd">
+					<li v-for="item in myList">{{ item.name }}</li>
+		        </ul>
+		    </div>
+		    <br/><br/><br/>
+		    <p>
+			    <label for="addText">Ajouter une BD</label> :
+				<input id="addText" type="text" v-model="name">
+				<button v-on:click="sendNewElement()">Ajouter !</button>
+			</p>
+			<p>			
+			    <label for="suppText">Supprimer une BD</label> :
+				<input v-model="supptext" type="text">
+				<button id="boutonsupp" v-on:click="removeElement()">Supprimer</button>
+			</p>
+			<p>
+			    <label for="modifText">Modifier la BD</label> :
+				<input type="text" v-model="amodif" required> en <input type="text" v-model="name1" required>
+				<button id="boutonmodif" v-on:click="modifElement()">Modifier</button>
+			</p>
+			<p>
+			    <label for="recherchText">Rechercher la BD</label> :
+				<input type="text" v-model="rechtext" required>
+				<button v-on:click="searchElement ()">Rechercher</button>
+			</p>
+
+			<p v-if="admin ===0">Vous devez être connecté pour supprimer ou modifier une BD.<p>
+			<li v-if="admin === 0" v-on:click="currentPage = 'login'">Se connecter</li>
+			<p v-if="admin ===1">Vous êtes connecté en Administrateur.<p>
+
+			<br/> <button v-if="admin ===1" id="boutondeco" v-on:click="admin = 0">Se deconnecter</button>
+
+		</section>
+
+
+	</main>
+
+	<div id="toast"><div id="img">Erreur</div><div id="desc">Cette BD existe déjà.</div></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
+	<script src="script1.js"></script>
+	<link rel="stylesheet" href="style1.css">
+</body>
+</html>
