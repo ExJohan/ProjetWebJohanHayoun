@@ -1,4 +1,4 @@
-# ProjetWebJohanHayoun
+# Projet Web 4ème année Johan Hayoun
 
 Bienvenue sur mon projet Web de 4ème année. Ce projet a été réalisé dans le cadre du cours de Mr.Louis Cherel.
 
